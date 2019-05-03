@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<script type="text/javascript">
+			function checkForm() {
+				var r = /^\+?[1-9][0-9]*$/;
+				wpm=document.getElementById("wpm").value;
+				if (!document.getElementById("tosend").value) {
+					alert("Message cannot be none");
+					return false;
+				}
+				if (!r.test(wpm)) {
+					alert("WPM must be an integer");
+					return false;
+				}
+				return true;
+			}
+		</script>
+	</head>
+	<body>
+		<form method="POST" action="/send" onsubmit="return checkForm()">
+			<table>
+				<tr>
+					<td><a>Message: </a></td>
+					<td><input type="text" name="tosend" id="tosend"></td>
+				</tr>
+				<tr>
+					<td><a>WPM: </a></td>
+					<td><input type="text" name="wpm" id="wpm" value="20"></td>
+				</tr>
+				<tr><td><input type="submit" value="Send"></td></tr>
+			</table>
+		</form>
+	</body>
+</html>
