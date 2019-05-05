@@ -26,36 +26,32 @@ void space() {
   delay(1200 / wpm);
 }
 
-void di() {
-  dit();
-}
-
 void playLetter(char x) {
   switch (x) {
     case 'A':
-      di(); dah(); return;
+      dit(); dah(); return;
     case 'B':
-      dah(); di(); di(); dit(); return;
+      dah(); dit(); dit(); dit(); return;
     case 'C':
-      dah(); di(); dah(); dit(); return;
+      dah(); dit(); dah(); dit(); return;
     case 'D':
-      dah(); di(); di(); return;
+      dah(); dit(); dit(); return;
     case 'E':
-      di(); return;
+      dit(); return;
     case 'F':
-      di(); di(); dah(); dit(); return;
+      dit(); dit(); dah(); dit(); return;
     case 'G':
       dah(); dah(); dit(); return;
     case 'H':
-      di(); di(); di(); dit(); return;
+      dit(); dit(); dit(); dit(); return;
     case 'I':
-      di(); dit(); return;
+      dit(); dit(); return;
     case 'J':
-      di(); dah(); dah(); dah(); return;
+      dit(); dah(); dah(); dah(); return;
     case 'K':
-      dah(); di(); dah(); return;
+      dah(); dit(); dah(); return;
     case 'L':
-      di(); dah(); di(); dit(); return;
+      dit(); dah(); dit(); dit(); return;
     case 'M':
       dah(); dah();
     case 'N':
@@ -63,57 +59,57 @@ void playLetter(char x) {
     case 'O':
       dah(); dah(); dah(); return;
     case 'P':
-      di(); dah(); dah(); dit(); return;
+      dit(); dah(); dah(); dit(); return;
     case 'Q':
-      dah(); dah(); di(); dah(); return;
+      dah(); dah(); dit(); dah(); return;
     case 'R':
-      di(); dah(); dit(); return;
+      dit(); dah(); dit(); return;
     case 'S':
-      di(); di(); di(); return;
+      dit(); dit(); dit(); return;
     case 'T':
       dah(); return;
     case 'U':
-      di(); di(); dah(); return;
+      dit(); dit(); dah(); return;
     case 'V':
-      di(); di(); di(); dah(); return;
+      dit(); dit(); dit(); dah(); return;
     case 'W':
-      di(); dah(); dah(); return;
+      dit(); dah(); dah(); return;
     case 'X':
-      dah(); di(); di(); dah(); return;
+      dah(); dit(); dit(); dah(); return;
     case 'Y':
-      dah(); di(); dah(); dah(); return;
+      dah(); dit(); dah(); dah(); return;
     case 'Z':
-      dah(); dah(); di(); dit(); return;
+      dah(); dah(); dit(); dit(); return;
     case ' ':
       space(); space(); return;
     case '.':
-      di(); dah(); di(); dah(); di(); dah(); return;
+      dit(); dah(); dit(); dah(); dit(); dah(); return;
     case '/':
-      dah(); di(); di(); dah(); di(); return;
+      dah(); dit(); dit(); dah(); dit(); return;
     case '-':
-      dah(); di(); di(); di(); di(); dah(); return;
+      dah(); dit(); dit(); dit(); dit(); dah(); return;
     case '?':
-      di(); dah(); di(); di(); dah(); di();  return;
+      dit(); dah(); dit(); dit(); dah(); dit();  return;
     case ',':
-      dah(); dah(); di(); di(); dah(); dah(); return;
+      dah(); dah(); dit(); dit(); dah(); dah(); return;
     case '1':
-      di(); dah(); dah(); dah(); dah(); return;
+      dit(); dah(); dah(); dah(); dah(); return;
     case '2':
-      di(); di(); dah(); dah(); dah(); return;
+      dit(); dit(); dah(); dah(); dah(); return;
     case '3':
-      di(); di(); di(); dah(); dah(); return;
+      dit(); dit(); dit(); dah(); dah(); return;
     case '4':
-      di(); di(); di(); di(); dah(); return;
+      dit(); dit(); dit(); dit(); dah(); return;
     case '5':
-      di(); di(); di(); di(); di(); return;
+      dit(); dit(); dit(); dit(); dit(); return;
     case '6':
-      dah(); di(); di(); di(); di(); return;
+      dah(); dit(); dit(); dit(); dit(); return;
     case '7':
-      dah(); dah(); di(); di(); di(); return;
+      dah(); dah(); dit(); dit(); dit(); return;
     case '8':
-      dah(); dah(); dah(); di(); di(); return;
+      dah(); dah(); dah(); dit(); dit(); return;
     case '9':
-      dah(); dah(); dah(); dah(); di(); return;
+      dah(); dah(); dah(); dah(); dit(); return;
     case '0':
       dah(); dah(); dah(); dah(); dah(); return;
   }
@@ -141,6 +137,7 @@ void onsend() {
          wpm = server.arg(i).toInt();
     }
   }
+  server.send(200, "text/html", "<script language=\"javascript\">alert(\"Sending...\");window.location.href=\"/\";</script>");
   for (uint8_t i = 0; i < tosend.length(); i++) {
     char ch = tosend[i];
     if (isLowerCase(ch))
@@ -148,7 +145,6 @@ void onsend() {
     playLetter(ch);
     space();
   }
-  server.send(200, "application/javascript", "alert(\"Sent\");window.location.href=\"/\";");
 }
 
 void setup() {
